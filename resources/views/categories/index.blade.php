@@ -21,7 +21,17 @@
                         <td>{{ $category->id }}</td>
                         <td>{{ $category->name }}</td>
                         <td>
-                            <a href="{{route('categories.edit', ['category' => $category->id]) }} ">Editar</a>
+                            <ul class="list-inline">
+                                <li><a href="{{route('categories.edit', ['category' => $category->id]) }}">Editar</a></li>
+                                <li>|</li>
+                                <li>
+                                    <a href="{{route('categories.destroy', ['category' => $category->id]) }}"
+                                        onclick="document.getElementById('delete-form-{{$category->id}}').submit(); return false">Excluir</a>
+                                    {!! Form::open(['route' => ['categories.destroy','category' => $category->id],
+                                                    'method' => 'DELETE', 'id' => "delete-form-$category->id", 'class' => 'form', 'style' => 'display:none']) !!}
+                                    {!! Form::close() !!}
+                                </li>
+                            </ul>
                         </td>
                     </tr>
                 @endforeach

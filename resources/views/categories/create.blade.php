@@ -15,6 +15,7 @@
             <div class="form-group">
                  {!! Form::submit('Criar categorias', ['class' => 'btn btn-primary']) !!}
             </div>
+            {!! Form::close() !!}
         </div>
     </div>
 @endsection
