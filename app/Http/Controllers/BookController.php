@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Category;
+use App\Book;
 use Illuminate\Http\Request;
 
-class CategoriesController extends Controller
+/**
+ * Class BooksController
+ * @package App\Http\Controllers
+ */
+class BooksController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +18,8 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        $categories = Category::query()->paginate(10);
-        return view('categories.index',compact('categories'));
+        $books = Book::query()->paginate(10);
+        return view('books.index',compact('books'));
     }
 
     /**
@@ -25,7 +29,7 @@ class CategoriesController extends Controller
      */
     public function create()
     {
-        return view('categories.create');
+        return view('books.create');
     }
 
     /**
@@ -36,20 +40,20 @@ class CategoriesController extends Controller
      */
     public function store(Request $request)
     {
-        Category::create($request->all());
-        return redirect()->route('categories.index');
+        Book::create($request->all());
+        return redirect()->route('books.index');
     }
 
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  Category  $category
+     * @param  Book  $book
      * @return \Illuminate\Http\Response
      */
-    public function edit(Category $category)
+    public function edit(Book $book)
     {
-        return view('categories.edit', compact('category'));
+        return view('books.edit', compact('book'));
 
     }
 
@@ -57,26 +61,26 @@ class CategoriesController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  Category $category
+     * @param  Book $book
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request, Book $book)
     {
-        $category->fill($request->all());
-        $category->save();
-        return redirect()->route('categories.index');
+        $book->fill($request->all());
+        $book->save();
+        return redirect()->route('books.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  Category #category
+     * @param  Book $book
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Category $category)
+    public function destroy(Book $book)
     {
-        $category->delete();
-        return redirect()->route('categories.index');
+        $book->delete();
+        return redirect()->route('books.index');
 
     }
 }

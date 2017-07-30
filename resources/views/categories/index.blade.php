@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row">
             <h3>Listagem de categorias</h3>
-            <a href="{{ route('categories.create') }}" class="btn btn-primary">Nova categorias</a>
+            <a href="{{ route('categories.create') }}" class="btn btn-primary">Nova Categoria</a>
         </div>
 
         <div class="row">

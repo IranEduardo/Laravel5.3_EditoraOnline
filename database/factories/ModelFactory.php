@@ -16,9 +16,9 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
     static $password;
 
     return [
-        'name' => $faker->name,
-        'email' => $faker->unique()->safeEmail,
-        'password' => $password ?: $password = bcrypt('secret'),
+        'name'           => $faker->name,
+        'email'          => $faker->unique()->safeEmail,
+        'password'       => $password ?: $password = bcrypt('secret'),
         'remember_token' => str_random(10),
     ];
 });
@@ -28,3 +28,12 @@ $factory->define(App\Category::class, function (Faker\Generator $faker) {
         'name' => $faker->unique()->word,
     ];
 });
+
+$factory->define(App\Book::class, function (Faker\Generator $faker) {
+    return [
+        'title'    => $faker->unique()->sentence,
+        'subtitle' => $faker->sentence,
+        'price'    => $faker->randomFloat(2,5,500)
+     ];
+});
+
