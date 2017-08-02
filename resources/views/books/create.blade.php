@@ -7,22 +7,28 @@
 
             {!! Form::open(['route' => 'books.store', 'class' => 'form']) !!}
 
-            <div class="form-group">
-                {!! Form::label('title', 'Titulo') !!}
-                {!! Form::text('title', null, ['class' => 'form-control']) !!}
-            </div>
-            <div class="form-group">
-                {!! Form::label('subtitle', 'SubTitulo') !!}
-                {!! Form::text('subtitle', null, ['class' => 'form-control']) !!}
-            </div>
-            <div class="form-group">
-                {!! Form::label('price', 'Preço') !!}
-                {!! Form::text('price', null, ['class' => 'form-control']) !!}
-            </div>
+                {!! Html::openFormGroup('title', $errors) !!}
+                     {!! Form::label('title', 'Titulo', ['class' => 'control-label']) !!}
+                     {!! Form::text('title', null, ['class' => 'form-control']) !!}
+                     {!! Form::error('title', $errors) !!}
+                {!! Html::closeFormGroup() !!}
 
-            <div class="form-group">
-                 {!! Form::submit('Criar Livro', ['class' => 'btn btn-primary']) !!}
-            </div>
+                {!! Html::openFormGroup('subtitle', $errors) !!}
+                    {!! Form::label('subtitle', 'SubTitulo', ['class' => 'control-label']) !!}
+                    {!! Form::text('subtitle', null, ['class' => 'form-control']) !!}
+                    {!! Form::error('subtitle', $errors) !!}
+                {!! Html::closeFormGroup() !!}
+
+                {!! Html::openFormGroup('price', $errors) !!}
+                    {!! Form::label('price', 'Preço', ['class' => 'control-label']) !!}
+                    {!! Form::text('price', null, ['class' => 'form-control']) !!}
+                    {!! Form::error('price', $errors) !!}
+                {!! Html::closeFormGroup() !!}
+
+                {!! Html::openFormGroup() !!}
+                     {!! Form::submit('Criar Livro', ['class' => 'btn btn-primary']) !!}
+                {!! Html::closeFormGroup() !!}
+
             {!! Form::close() !!}
         </div>
     </div>
