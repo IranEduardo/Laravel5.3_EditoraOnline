@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Author;
 use App\Book;
 use App\Http\Requests\BookRequest;
 
@@ -16,6 +17,20 @@ class BooksController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    private function all_authors()
+    {
+        $authors = Author::all();
+        $all_authors = [];
+
+        foreach ($authors as $author) {
+            $all_authors[$author->id] = $author->name;
+        }
+        return $all_authors;
+
+
+    }
+
     public function index()
     {
         $books = Book::query()->paginate(10);
@@ -29,7 +44,8 @@ class BooksController extends Controller
      */
     public function create()
     {
-        return view('books.create');
+        $authors = $this->all_authors();
+        return view('books.create', compact('authors'));
     }
 
     /**

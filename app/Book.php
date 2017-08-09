@@ -9,6 +9,12 @@ class Book extends Model
     protected $fillable = [
         'title',
         'subtitle',
-        'price'
+        'price',
+        'author_id'
     ];
+
+
+    public function author() {
+        return $this->belongsTo('App\Author');
+    }
 }

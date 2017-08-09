@@ -15,6 +15,7 @@
                     <th>Titulo</th>
                     <th>SubTitulo</th>
                     <th>Preço</th>
+                    <th>Autor</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -24,6 +25,7 @@
                         <td>{{ $book->title }}</td>
                         <td>{{ $book->subtitle }}</td>
                         <td>{{ $book->price }}</td>
+                        <td>{{ $book->author != null ? $book->author->name : '' }}</td>
                         <td>
                             <ul class="list-inline">
                                 <li><a href="{{route('books.edit', ['book' => $book->id]) }}">Editar</a></li>
