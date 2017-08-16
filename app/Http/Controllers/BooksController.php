@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Author;
 use App\Book;
 use App\Http\Requests\BookRequest;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * Class BooksController
@@ -12,24 +13,29 @@ use App\Http\Requests\BookRequest;
  */
 class BooksController extends Controller
 {
+
+    /**
+     * Retrive all authors of the system
+     *
+     * @return array
+     *
+
+      private function all_authors()
+      {
+          $authors = Author::all();
+          $all_authors = [];
+
+          foreach ($authors as $author) {
+              $all_authors[$author->id] = $author->name;
+          }
+          return $all_authors;
+      }
+     */
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-
-    private function all_authors()
-    {
-        $authors = Author::all();
-        $all_authors = [];
-
-        foreach ($authors as $author) {
-            $all_authors[$author->id] = $author->name;
-        }
-        return $all_authors;
-
-
-    }
 
     public function index()
     {
@@ -44,8 +50,7 @@ class BooksController extends Controller
      */
     public function create()
     {
-        $authors = $this->all_authors();
-        return view('books.create', compact('authors'));
+        return view('books.create');
     }
 
     /**
@@ -56,7 +61,9 @@ class BooksController extends Controller
      */
     public function store(BookRequest $request)
     {
-        Book::create($request->all());
+        $request_book = $request->all();
+        $request_book['author_id'] = Auth::user()->author->id;
+        Book::create($request_book);
         return redirect()->route('books.index');
     }
 

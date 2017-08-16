@@ -25,13 +25,6 @@
                     {!! Form::error('price', $errors) !!}
                 {!! Html::closeFormGroup() !!}
 
-                {!! Html::openFormGroup('authors', $errors) !!}
-                   {!! Form::label('author', 'Autor', ['class' => 'control-label']) !!}
-                   <br>
-                   {!! Form::select('author_id', $authors, 1) !!}
-                {!! Html::closeFormGroup() !!}
-
-
                 {!! Html::openFormGroup() !!}
                      {!! Form::submit('Criar Livro', ['class' => 'btn btn-primary']) !!}
                 {!! Html::closeFormGroup() !!}

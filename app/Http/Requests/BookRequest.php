@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 
 class BookRequest extends FormRequest
 {
@@ -13,7 +15,14 @@ class BookRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        $book = $this->route('book');
+        $book_user_id = (($book != null) and
+                         ($book->author != null) and
+                         ($book->author->user != null)) ? $book->author->user->id : null;
+
+        return (($book_user_id == Auth::id()) or
+                ($book == null)) and
+                (Auth::user()->author);
     }
 
     /**
@@ -23,10 +32,13 @@ class BookRequest extends FormRequest
      */
     public function rules()
     {
+        $book = $this->route('book');
+        $id = $book != null ? $book->id : null;
+
         return [
-            'title'    => 'required',
-            'subtitle' => 'required',
-            'price'    => 'required|numeric'
-        ];
+                'title'     => "required|max:255|unique:books,title,$id",
+                'subtitle'  => 'required|max:255',
+                'price'     => 'required|numeric',
+          ];
     }
 }

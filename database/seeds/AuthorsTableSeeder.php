@@ -12,7 +12,11 @@ class AuthorsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(Author::class,50)->create();
+        for($i = 1; $i <= 30; $i++) {
+            factory(Author::class,1)->create([
+                'user_id' => $i
+            ]);
+        }
 
     }
 }

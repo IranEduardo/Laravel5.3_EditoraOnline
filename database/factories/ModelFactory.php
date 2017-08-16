@@ -34,7 +34,7 @@ $factory->define(App\Book::class, function (Faker\Generator $faker) {
         'title'     => $faker->unique()->sentence,
         'subtitle'  => $faker->sentence,
         'price'     => $faker->randomFloat(2,5,500),
-        'author_id' => $faker->numberBetween(1,45)
+        'author_id' => $faker->numberBetween(1,30)
      ];
 });
 
@@ -43,6 +43,6 @@ $factory->define(App\Author::class, function (Faker\Generator $faker) {
     return [
         'name'    => $faker->unique()->name,
         'birth_date' =>  date('Y-m-d',$faker->dateTime->getTimestamp()),
-        'gender'    => $faker->boolean ? 'M' : 'F'
+        'gender'    => $faker->boolean ? 'M' : 'F',
     ];
 });

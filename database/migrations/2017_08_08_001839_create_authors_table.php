@@ -18,6 +18,8 @@ class CreateAuthorsTable extends Migration
             $table->string('name')->unique();
             $table->date('birth_date');
             $table->string('gender',1);
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
 
