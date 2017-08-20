@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <h3>Listagem de categorias</h3>
+            <h3>Listagem de livros</h3>
             <a href="{{ route('books.create') }}" class="btn btn-primary">Novo Livro</a>
         </div>
 
