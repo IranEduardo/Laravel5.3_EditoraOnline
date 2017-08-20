@@ -10,7 +10,7 @@
                 @include('books._form');
 
                 {!! Html::openFormGroup() !!}
-                     {!! Form::submit('Criar Livro', ['class' => 'btn btn-primary']) !!}
+                    {!! Button::primary('Criar Livro')->submit() !!}
                 {!! Html::closeFormGroup() !!}
 
             {!! Form::close() !!}
